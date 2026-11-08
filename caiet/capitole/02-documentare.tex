@@ -1,9 +1,41 @@
-\chapter{Documentare și stadiul actual}
-\etapa{S1-E2}
-Ce soluții, metode sau instrumente există deja, ce ați citit (cu citări, de exemplu \cite{zobel2014}) și ce aduce tema.
+\chapter{Documentarea}
 
-\section{Surse și soluții existente}
-<…>
+\section{Stadiul actual al domeniului}
+Jocul de Sudoku standard constă într-o grilă de dimensiune $9 \times 9$, împărțită în 9 sub-grile (regiuni sau blocuri) de dimensiune $3 \times 3$. Obiectivul jocului este completarea celulelor libere cu cifre de la 1 la 9, astfel încât fiecare linie, fiecare coloană și fiecare sub-grilă $3 \times 3$ să conțină fiecare cifră de la 1 la 9 o singură dată.
+
+Din punct de vedere matematic și algoritmic, Sudoku este o problemă clasică de satisfacere a constrângerilor (\textit{Constraint Satisfaction Problem} -- CSP) \cite{russell2020}. În forma sa generalizată pe o grilă de dimensiune $n^2 \times n^2$, problema a fost demonstrată ca fiind \textbf{NP-completă} \cite{yato2003}. Pentru grila clasică $9 \times 9$, numărul total de configurații complete valide a fost determinat în anul 2005 de către Bertram Felgenhauer și Frazer Jarvis ca fiind egal cu $6.670.903.752.021.072.936.960 \approx 6,67 \times 10^{21}$ \cite{felgenhauer2006}. De asemenea, în anul 2012, Gary McGuire și colaboratorii săi au demonstrat că numărul minim de indicii (\textit{clues}) necesare pentru ca o grilă de Sudoku să admită o soluție unică este 17 \cite{mcguire2014}.
+
+În stadiul actual, metodele de rezolvare și generare automată se împart în următoarele direcții principale:
+\begin{itemize}
+    \item \textbf{Căutarea cu revenire (Backtracking / DFS):} Abordarea fundamentală care parcurge celulele libere și testează secvențial valorile valide din domeniul $\{1, \dots, 9\}$. Dacă pentru o celulă curentă nu există nicio valoare validă, algoritmul revine la celula anterioară (\textit{backtrack}) și încearcă următoarea opțiune.
+    \item \textbf{Propagarea constrângerilor și euristici CSP:} Optimizează căutarea prin reducerea domeniilor de valori posibile înainte de ramificare \cite{norvig2006}. Se utilizează euristici precum \textit{Minimum Remaining Values} (MRV -- selectarea celulei cu cei mai puțini candidați posibili) și reguli de eliminare logică (\textit{Naked Singles}, \textit{Hidden Singles}).
+    \item \textbf{Algoritmul X și Dancing Links (DLX):} Formulat de Donald E. Knuth \cite{knuth2000}, transformă rezolvarea unei grile de Sudoku într-o problemă de acoperire exactă (\textit{Exact Cover Problem}) pe o matrice binară cu 729 de linii (câte 9 candidați pentru fiecare dintre cele 81 de celule) și 324 de coloane (cele 4 tipuri de constrângeri: poziție, linie, coloană, regiune). Este una dintre cele mai rapide metode pentru verificarea unicității soluției.
+    \item \textbf{Algoritmi de generare a grilelor:} Generarea unui puzzle valid cu soluție unică se realizează în două faze:
+    \begin{enumerate}
+        \item \textit{Construirea unei grile complete valide:} Se populează aleator cele trei sub-grile diagonale $3 \times 3$ (deoarece sunt independente între ele), apoi se aplică algoritmul de rezolvare cu selecție randomizată a candidaților pentru a umple restul grilei.
+        \item \textit{Eliminarea controlată a valorilor (Digging Holes):} Se elimină pe rând cifre din grila completă în ordine aleatoare (sau simetrică). După fiecare eliminare, se apelează modulul de rezolvare pentru a număra soluțiile posibile; dacă grila admite mai mult de o soluție, cifra eliminată este restaurată. Numărul de celule rămase și tehnicile necesare rezolvării determină nivelul de dificultate (Ușor, Mediu, Dificil).
+    \end{enumerate}
+\end{itemize}
+
+\section{Surse de documentare}
+Documentarea teoretică și tehnică se bazează pe următoarele categorii de surse (detaliate în secțiunea Bibliografie):
+\begin{itemize}
+    \item \textbf{Articole științifice și combinatorică:} Lucrarea lui Donald Knuth privind structurile \textit{Dancing Links} \cite{knuth2000}, analiza matematică a grilelor de Sudoku realizată de Felgenhauer și Jarvis \cite{felgenhauer2006}, demonstrația de NP-completitudine a lui Yato și Seta \cite{yato2003} și studiul privind numărul minim de indicii realizat de McGuire et al. \cite{mcguire2014}.
+    \item \textbf{Literatură de specialitate în Inteligență Artificială:} Tratatul lui Stuart Russell și Peter Norvig \cite{russell2020}, pentru formalizarea problemelor de satisfacere a constrângerilor (CSP), căutarea Backtracking și euristicile de tip MRV.
+    \item \textbf{Studii de caz și implementări practice:} Articolul tehnic al lui Peter Norvig privind propagarea constrângerilor în Sudoku \cite{norvig2006}.
+\end{itemize}
 
 \section{Planul individual de lucru}
-Planul pe cele două semestre, pe etapele E1–E7.
+Pentru realizarea proiectului de practică, activitatea a fost împărțită în următoarele etape de lucru:
+\begin{enumerate}
+    \item \textbf{Etapa 1 (S1-E1) -- Definirea temei:} Configurarea depozitului Git, inițializarea caietului de practică, stabilirea scopului, a obiectivelor și a contextului aplicației.
+    \item \textbf{Etapa 2 (S1-E2) -- Documentarea:} Studiul algoritmilor existenți pentru generarea și rezolvarea jocurilor de tip Sudoku (Backtracking, CSP, Exact Cover), selectarea surselor bibliografice și stabilirea planului individual de lucru.
+    \item \textbf{Etapa 3 (S1-E3) -- Analiza și Proiectarea:} Definirea cerințelor funcționale și nefuncționale, alegerea limbajului de programare și a tehnologiilor, proiectarea arhitecturii aplicației, a structurilor de date pentru reprezentarea grilei $9 \times 9$ și a diagramelor UML.
+    \item \textbf{Etapa 4 (S1-E4) -- Realizarea (Implementarea):} 
+    \begin{itemize}
+        \item Implementarea validatorului de reguli și a algoritmului de rezolvare (Solver) capabil să găsească soluția și să verifice unicitatea acesteia.
+        \item Implementarea generatorului de grile valide (Generator) pe mai multe niveluri de dificultate.
+        \item Dezvoltarea interfeței cu utilizatorul pentru jucarea efectivă, verificarea mutărilor și solicitarea de indicii.
+    \end{itemize}
+    \item \textbf{Etapa 5 (S1-E5) -- Testarea și Concluziile:} Verificarea corectitudinii generării (unicitatea soluției), măsurarea timpilor de execuție pentru diferite grade de dificultate, validarea funcționalităților și redactarea concluziilor finale ale stagiului de practică.
+\end{enumerate}

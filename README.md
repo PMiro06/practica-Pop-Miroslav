@@ -1,4 +1,4 @@
-# Practică de specialitate: <titlul temei>
+# Practică de specialitate: <Rezolvarea și generarea automată a jocurilor de tip Sudoku>
 
 | | |
 |---|---|
