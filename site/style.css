@@ -1,0 +1,29 @@
+:root{--bg:#eef2f7;--ink:#1b2433;--line:#a9b5c8;--thick:#1b2433;--cell:#fff;--peer:#e4ebf7;--sel:#c9dcff;--acc:#2457d6;--bad:#c43d3d;--badbg:#fde3e3;--mut:#5b687d;
+box-sizing:border-box;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161f;--ink:#e6ebf5;--line:#3b4559;--thick:#aab6cc;--cell:#1a2030;--peer:#232c42;--sel:#2c4170;--acc:#8fb2ff;--bad:#ff8a8a;--badbg:#4a2227;--mut:#98a4ba}}
+:root[data-theme="dark"]{--bg:#12161f;--ink:#e6ebf5;--line:#3b4559;--thick:#aab6cc;--cell:#1a2030;--peer:#232c42;--sel:#2c4170;--acc:#8fb2ff;--bad:#ff8a8a;--badbg:#4a2227;--mut:#98a4ba}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;display:flex;justify-content:center;padding:20px 12px 32px}
+main{width:min(100%,480px)}
+h1{font-size:2rem;font-weight:800;margin:0 0 4px;letter-spacing:-.02em}
+p.sub{margin:0 0 16px;color:var(--mut);font-size:.95rem}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button{font:inherit;color:inherit;cursor:pointer}
+.btn{background:var(--cell);border:1.5px solid var(--thick);border-radius:8px;padding:8px 12px;font-weight:600}
+.btn:hover{background:var(--peer)}
+.btn.main{background:var(--acc);color:var(--bg);border-color:var(--acc)}
+select.btn{appearance:auto}
+#grid{display:grid;grid-template-columns:repeat(9,1fr);border:3px solid var(--thick);background:var(--cell);aspect-ratio:1}
+.c{border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--cell);font-size:clamp(1.1rem,5.4vw,1.7rem);padding:0;display:flex;align-items:center;justify-content:center;font-weight:400;color:var(--acc);min-width:0}
+.c.g{font-weight:800;color:var(--ink)}
+.c.r2{border-right:2px solid var(--thick)}.c.b2{border-bottom:2px solid var(--thick)}
+.c.cl3{border-right:0}.c.rw3{border-bottom:0}
+.c.p{background:var(--peer)}.c.s{background:var(--sel)}
+.c.x{background:var(--badbg);color:var(--bad)}
+.c:focus-visible,.btn:focus-visible,.k:focus-visible{outline:3px solid var(--acc);outline-offset:-3px}
+#pad{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.k{background:var(--cell);border:1.5px solid var(--line);border-radius:8px;padding:10px 0;font-size:1.25rem;font-weight:600}
+.k:hover{background:var(--peer)}
+#msg{min-height:1.5em;margin:12px 0 0;font-weight:600}
+@media (prefers-reduced-motion:no-preference){.c{transition:background .12s}}

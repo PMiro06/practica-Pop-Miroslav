@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sudoku</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<h1>Sudoku</h1>
+<p class="sub">Puzzle generat automat, cu soluție unică. Poți cere un indiciu sau lăsa solverul să îl rezolve.</p>
+<div class="bar">
+<select id="lvl" class="btn" aria-label="Dificultate"><option value="42">Ușor</option><option value="34" selected>Mediu</option><option value="27">Greu</option></select>
+<button class="btn main" id="new">Joc nou</button>
+<button class="btn" id="check">Verifică</button>
+<button class="btn" id="hint">Indiciu</button>
+<button class="btn" id="solve">Rezolvă</button>
+</div>
+<div id="grid" role="grid" aria-label="Grila Sudoku"></div>
+<div id="pad"></div>
+<p id="msg" role="status"></p>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
